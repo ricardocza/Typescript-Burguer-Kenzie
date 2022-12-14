@@ -4,10 +4,10 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         --color-primary: #27AE60;
         --color-secundary: #EB5757;
-        --color-grey-scale600: #333333;
-        --color-grey-scale300: #828282;
-        --color-grey-scale100: #E0E0E0;
-        --color-grey-scale0: #f5f5f5;
+        --color-grey600: #333333;
+        --color-grey300: #828282;
+        --color-grey100: #E0E0E0;
+        --color-grey0: #f5f5f5;
     }
 
 * {
