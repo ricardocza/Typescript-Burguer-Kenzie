@@ -9,7 +9,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 export interface iFormLogin {
   name: string;
+  email: string;
   password: string;
+  confirmPassword: string;
 }
 
 export const RegisterPage = () => {
@@ -29,36 +31,32 @@ export const RegisterPage = () => {
       </div>
       <Form onSubmit={handleSubmit(submitLogin)}>
         <Input
-          name="name"
           label="Nome"
           placeholder="Nome"
           type={"text"}
           showButton={false}
-          register={register}
+          register={register("name")}
         />
         <Input
-          name="email"
           label="Email"
           placeholder="Email"
           type={"email"}
           showButton={false}
-          register={register}
+          register={register("email")}
         />
         <Input
-          name="password"
           label="Senha"
           placeholder="Senha"
           type={"password"}
           showButton={false}
-          register={register}
+          register={register("password")}
         />
         <Input
-          name="confirmPassword"
           label="Confirmar Senha"
           placeholder="Confirmar Senha"
           type={"password"}
           showButton={false}
-          register={register}
+          register={register("confirmPassword")}
         />
         <ButtonGrey type="submit" text="Cadastrar" />
       </Form>

@@ -7,8 +7,13 @@ import cartIcon from "../../imgs/carticon.png";
 import exitIcon from "../../imgs/exiticon.png";
 import { ProductList } from "../../components/ProductList";
 import { Card } from "../../components/Card";
+import { useNavigate } from "react-router-dom";
 
 export const HomePage = () => {
+  const navigate = useNavigate();
+  const exitButton = () => {
+    navigate("/");
+  };
   return (
     <StyledHomePage>
       <header>
@@ -22,7 +27,7 @@ export const HomePage = () => {
               <img src={cartIcon} alt="Icone de carrinho de compras" />
               <p>0</p>
             </figure>
-            <figure>
+            <figure onClick={exitButton}>
               <img src={exitIcon} alt="Icone de sair do Burguer Kenzie 😥 " />
             </figure>
           </div>
