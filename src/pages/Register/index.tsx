@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Form, iSubmitHandler } from "../../components/Form";
 import { Input } from "../../components/Input";
-import { StyledLoginPage } from "./style";
+import { StyledRegistrerPage } from "./style";
 import logo from "../../imgs/logo.png";
 import loginicon from "../../imgs/loginicon.png";
 import { ButtonGrey, ButtonPrimary } from "../../components/Button";
@@ -12,29 +12,22 @@ export interface iFormLogin {
   password: string;
 }
 
-export const LoginPage = () => {
+export const RegisterPage = () => {
   const { register, handleSubmit } = useForm<iFormLogin>();
   const navigate = useNavigate();
 
   const submitLogin: SubmitHandler<iFormLogin> = (data) => {
     console.log(data);
-    navigate("/home");
   };
 
   return (
-    <StyledLoginPage>
+    <StyledRegistrerPage>
       <img src={logo} alt="" />
       <div>
-        <figure>
-          <img src={loginicon} alt="" />
-        </figure>
-        <p>
-          A vida é como um sanduíche, é preciso recheá-la com os{" "}
-          <span>melhores</span> ingredientes.
-        </p>
+        <h3>Cadastro</h3>
+        <Link to={"/"}>Retornar para o login</Link>
       </div>
       <Form onSubmit={handleSubmit(submitLogin)}>
-        {/* <input type="text" {...register("name")} /> */}
         <Input
           name="name"
           label="Nome"
@@ -44,19 +37,31 @@ export const LoginPage = () => {
           register={register}
         />
         <Input
+          name="email"
+          label="Email"
+          placeholder="Email"
+          type={"email"}
+          showButton={false}
+          register={register}
+        />
+        <Input
           name="password"
           label="Senha"
-          placeholder="Nome"
+          placeholder="Senha"
           type={"password"}
           showButton={false}
           register={register}
         />
-        <ButtonPrimary type="submit" text="Logar" />
+        <Input
+          name="confirmPassword"
+          label="Confirmar Senha"
+          placeholder="Confirmar Senha"
+          type={"password"}
+          showButton={false}
+          register={register}
+        />
+        <ButtonGrey type="submit" text="Cadastrar" />
       </Form>
-      <p>Crie sua conta para saborear muitas delícias e matar sua fome!</p>
-      <Link to={"/register"}>
-        <ButtonGrey type="button" text="Cadastrar" />
-      </Link>
-    </StyledLoginPage>
+    </StyledRegistrerPage>
   );
 };
