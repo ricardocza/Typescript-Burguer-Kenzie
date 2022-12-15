@@ -5,6 +5,8 @@ import logo from "../../imgs/logo.png";
 import searchIcon from "../../imgs/searchmobile.png";
 import cartIcon from "../../imgs/carticon.png";
 import exitIcon from "../../imgs/exiticon.png";
+import { ProductList } from "../../components/ProductList";
+import { Card } from "../../components/Card";
 
 export const HomePage = () => {
   return (
@@ -26,6 +28,14 @@ export const HomePage = () => {
           </div>
         </section>
       </header>
+
+      <ProductList>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </ProductList>
     </StyledHomePage>
   );
 };
