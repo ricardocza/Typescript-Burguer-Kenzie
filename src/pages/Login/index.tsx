@@ -2,6 +2,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Form, iSubmitHandler } from "../../components/Form";
 import { Input } from "../../components/Input";
 import { StyledLoginPage } from "./style";
+import logo from "../../imgs/logo.png";
+import loginicon from "../../imgs/loginicon.png";
+import { ButtonGrey, ButtonPrimary } from "../../components/Button";
 
 export interface iFormLogin {
   name: string;
@@ -17,7 +20,16 @@ export const LoginPage = () => {
 
   return (
     <StyledLoginPage>
-      <h1>LOGIN DO BURGÃO DA KENZIE</h1>
+      <img src={logo} alt="" />
+      <div>
+        <figure>
+          <img src={loginicon} alt="" />
+        </figure>
+        <p>
+          A vida é como um sanduíche, é preciso recheá-la com os{" "}
+          <span>melhores</span> ingredientes.
+        </p>
+      </div>
       <Form onSubmit={handleSubmit(submitLogin)}>
         {/* <input type="text" {...register("name")} /> */}
         <Input
@@ -36,8 +48,10 @@ export const LoginPage = () => {
           showButton={false}
           register={register}
         />
-        <button type="submit">enviar</button>
+        <ButtonPrimary type="submit" text="Logar" />
       </Form>
+      <p>Crie sua conta para saborear muitas delícias e matar sua fome!</p>
+      <ButtonGrey type="button" text="Cadastrar" />
     </StyledLoginPage>
   );
 };

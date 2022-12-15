@@ -1,7 +1,6 @@
-import { HTMLInputTypeAttribute, ObjectHTMLAttributes, useState } from "react";
+import { HTMLInputTypeAttribute } from "react";
 import { StyledInput } from "./style";
 import { UseFormRegister } from "react-hook-form";
-import { iFormLogin } from "../../pages/Login";
 
 interface iInput {
   name: string;

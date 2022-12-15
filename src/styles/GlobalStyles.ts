@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     :root {
         --color-primary: #27AE60;
+        --color-primary50: #27AE6050;
         --color-secundary: #EB5757;
         --color-grey600: #333333;
         --color-grey300: #828282;
@@ -18,6 +19,10 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
 }
 
 `;
