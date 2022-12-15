@@ -34,22 +34,19 @@ export const LoginPage = () => {
         </p>
       </div>
       <Form onSubmit={handleSubmit(submitLogin)}>
-        {/* <input type="text" {...register("name")} /> */}
         <Input
-          name="name"
           label="Nome"
           placeholder="Nome"
           type={"text"}
           showButton={false}
-          register={register}
+          register={register("name")}
         />
         <Input
-          name="password"
           label="Senha"
           placeholder="Nome"
           type={"password"}
           showButton={false}
-          register={register}
+          register={register("password")}
         />
         <ButtonPrimary type="submit" text="Logar" />
       </Form>

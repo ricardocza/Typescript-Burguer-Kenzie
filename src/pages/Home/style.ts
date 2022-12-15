@@ -27,13 +27,15 @@ export const StyledHomePage = styled.main`
         display: flex;
         gap: 1rem;
 
-        & > figure {
+        & > button {
           cursor: pointer;
+          border: none;
+          background-color: transparent;
           position: relative;
 
           & > p {
             position: absolute;
-            top: -24px;
+            top: -18px;
             right: -10px;
             color: #ffffff;
             background-color: var(--color-primary);

@@ -1,18 +1,16 @@
-import { HTMLInputTypeAttribute } from "react";
+import { forwardRef, HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
 import { StyledInput } from "./style";
-import { UseFormRegister } from "react-hook-form";
+import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
 
 interface iInput {
-  name: string;
   label: string;
   placeholder: string;
   type: HTMLInputTypeAttribute;
   showButton: boolean;
-  register: UseFormRegister<any>;
+  register: UseFormRegisterReturn;
 }
 
 export const Input = ({
-  name,
   label,
   type,
   placeholder,
@@ -22,7 +20,7 @@ export const Input = ({
   return (
     <StyledInput>
       <label htmlFor={label}>{label}</label>
-      <input type={type} placeholder={placeholder} {...register(name)} />
+      <input type={type} placeholder={placeholder} {...register} />
       {showButton && <button>BOTÃO</button>}
     </StyledInput>
   );
