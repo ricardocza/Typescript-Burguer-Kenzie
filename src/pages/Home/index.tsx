@@ -16,6 +16,7 @@ export const HomePage = () => {
   const navigate = useNavigate();
 
   const exitButton = () => {
+    localStorage.removeItem("@TOKEN");
     navigate("/");
   };
 
