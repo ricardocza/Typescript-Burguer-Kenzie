@@ -6,8 +6,10 @@ import logo from "../../imgs/logo.png";
 import loginicon from "../../imgs/loginicon.png";
 import { ButtonGrey, ButtonPrimary } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
-export interface iFormLogin {
+export interface iFormRegister {
   name: string;
   email: string;
   password: string;
@@ -15,11 +17,14 @@ export interface iFormLogin {
 }
 
 export const RegisterPage = () => {
-  const { register, handleSubmit } = useForm<iFormLogin>();
+  const { requestNewUser } = useContext(UserContext);
+
+  const { register, handleSubmit } = useForm<iFormRegister>();
   const navigate = useNavigate();
 
-  const submitLogin: SubmitHandler<iFormLogin> = (data) => {
-    console.log(data);
+  const submitLogin: SubmitHandler<iFormRegister> = (data) => {
+    const { confirmPassword: _, ...rest } = data;
+    requestNewUser(rest);
   };
 
   return (
