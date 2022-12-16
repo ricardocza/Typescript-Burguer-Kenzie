@@ -23,6 +23,11 @@ export const StyledHomePage = styled.main`
       width: 100%;
       margin: 0 auto;
 
+      & > img {
+        width: 50%;
+        max-width: 200px;
+      }
+
       & > div {
         display: flex;
         gap: 1rem;

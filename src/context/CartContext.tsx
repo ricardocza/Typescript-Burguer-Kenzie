@@ -5,7 +5,16 @@ import { api } from "../services/api";
 interface iCartContext {
   products: iProduct[];
   setProducts: React.Dispatch<React.SetStateAction<any>>;
+  cartProducts: iCartProducts[];
+  setCartProducts: React.Dispatch<React.SetStateAction<any>>;
   requestProducts: () => void;
+}
+
+interface iCartProducts {
+  name: string;
+  price: number;
+  img: string;
+  quantity: number;
 }
 
 export interface iProduct {
@@ -24,7 +33,8 @@ interface iCartProvider {
 
 export const CartProvider = ({ children }: iCartProvider) => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
+  const [cartProducts, setCartProducts] = useState([]);
+  // const navigate = useNavigate();
 
   const requestProducts = async () => {
     const token = localStorage.getItem("@TOKEN");
@@ -43,7 +53,15 @@ export const CartProvider = ({ children }: iCartProvider) => {
   };
 
   return (
-    <CartContext.Provider value={{ products, setProducts, requestProducts }}>
+    <CartContext.Provider
+      value={{
+        products,
+        setProducts,
+        cartProducts,
+        setCartProducts,
+        requestProducts,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
