@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StyledHomePage } from "./style";
 
 import logo from "../../imgs/logo.png";
@@ -9,19 +9,28 @@ import { ProductList } from "../../components/ProductList";
 import { Card } from "../../components/Card";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../../components/CartModal";
+import { UserProvider } from "../../context/UserContext";
+import { CartContext } from "../../context/CartContext";
 
 export const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
+  const { products, requestProducts } = useContext(CartContext);
 
   const navigate = useNavigate();
 
   const exitButton = () => {
+    localStorage.removeItem("@TOKEN");
     navigate("/");
   };
 
   const openModal = () => {
     setShowModal(true);
   };
+
+  useEffect(() => {
+    console.log(products);
+    requestProducts();
+  }, []);
 
   return (
     <StyledHomePage>
@@ -44,11 +53,20 @@ export const HomePage = () => {
       </header>
 
       <ProductList>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {products.length > 0 ? (
+          products.map((element) => (
+            <Card
+              key={element.id}
+              id={element.id}
+              name={element.name}
+              category={element.category}
+              price={element.price}
+              img={element.img}
+            />
+          ))
+        ) : (
+          <p>lista vazia</p>
+        )}
       </ProductList>
       {showModal && <Modal setShowModal={setShowModal} />}
     </StyledHomePage>

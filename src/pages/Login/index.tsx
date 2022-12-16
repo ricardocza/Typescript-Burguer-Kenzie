@@ -6,19 +6,23 @@ import logo from "../../imgs/logo.png";
 import loginicon from "../../imgs/loginicon.png";
 import { ButtonGrey, ButtonPrimary } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 export interface iFormLogin {
-  name: string;
+  email: string;
   password: string;
 }
 
 export const LoginPage = () => {
+  const { requestLogin } = useContext(UserContext);
+
   const { register, handleSubmit } = useForm<iFormLogin>();
   const navigate = useNavigate();
 
-  const submitLogin: SubmitHandler<iFormLogin> = (data) => {
+  const submitLogin: SubmitHandler<iFormLogin> = async (data) => {
     console.log(data);
-    navigate("/home");
+    requestLogin(data);
   };
 
   return (
@@ -35,11 +39,11 @@ export const LoginPage = () => {
       </div>
       <Form onSubmit={handleSubmit(submitLogin)}>
         <Input
-          label="Nome"
-          placeholder="Nome"
+          label="Email"
+          placeholder="Email"
           type={"text"}
           showButton={false}
-          register={register("name")}
+          register={register("email")}
         />
         <Input
           label="Senha"
