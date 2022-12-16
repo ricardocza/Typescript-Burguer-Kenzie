@@ -4,6 +4,9 @@ import { ButtonPrimary } from "../Button";
 import { iProduct } from "../../context/CartContext";
 
 export const Card = ({ id, name, category, price, img }: iProduct) => {
+  const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(event.target);
+  };
   return (
     <StyledCard id={id}>
       <figure>
@@ -18,7 +21,7 @@ export const Card = ({ id, name, category, price, img }: iProduct) => {
             currency: "BRL",
           })}
         </h3>
-        <ButtonPrimary text="Adicionar" type="button" />
+        <ButtonPrimary onClick={addToCart} text="Adicionar" type="button" />
       </div>
     </StyledCard>
   );
