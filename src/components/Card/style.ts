@@ -13,9 +13,11 @@ export const StyledCard = styled.li`
 
   & > figure {
     width: 100%;
+    height: 150px;
     background-color: var(--color-grey0);
     display: flex;
     justify-content: center;
+    align-items: flex-end;
   }
   & > div {
     display: flex;
