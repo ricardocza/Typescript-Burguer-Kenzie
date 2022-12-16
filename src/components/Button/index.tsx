@@ -3,22 +3,23 @@ import { HTMLInputTypeAttribute } from "react";
 import { StyledButtonGrey, StyledButtonPrimary } from "./style";
 
 interface iButton {
+  id?: string;
   text: string;
   type: "button" | "submit";
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const ButtonPrimary = ({ text, type, onClick }: iButton) => {
+export const ButtonPrimary = ({ text, type, onClick, id }: iButton) => {
   return (
-    <StyledButtonPrimary onClick={onClick} type={type}>
+    <StyledButtonPrimary id={id} onClick={onClick} type={type}>
       {text}
     </StyledButtonPrimary>
   );
 };
 
-export const ButtonGrey = ({ text, type, onClick }: iButton) => {
+export const ButtonGrey = ({ text, type, onClick, id }: iButton) => {
   return (
-    <StyledButtonGrey onClick={onClick} type={type}>
+    <StyledButtonGrey id={id} onClick={onClick} type={type}>
       {text}
     </StyledButtonGrey>
   );

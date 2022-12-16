@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import { CartProductCard } from "../CartProductCard";
 import { StyledModal, StyledModalBG } from "./style";
 
 interface iModalProps {
@@ -6,7 +8,7 @@ interface iModalProps {
 }
 
 export const Modal = ({ setShowModal }: iModalProps) => {
-  const [cartProducts, setCartProducts] = useState(["teste1", "teste2"]);
+  const { cartProducts, setCartProducts } = useContext(CartContext);
 
   const closeModal = () => {
     setShowModal(false);
@@ -29,7 +31,7 @@ export const Modal = ({ setShowModal }: iModalProps) => {
         ) : (
           <ul>
             {cartProducts.map((element) => (
-              <p>{element}</p>
+              <CartProductCard key={element.id} cartProduct={element} />
             ))}
           </ul>
         )}
