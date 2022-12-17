@@ -1,5 +1,8 @@
+import axios, { AxiosError } from "axios";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { toastConfig } from "../components/ToastConfig";
 import { iFormLogin } from "../pages/Login";
 import { api } from "../services/api";
 
@@ -26,30 +29,83 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const navigate = useNavigate();
 
   const requestLogin = async (data: iFormLogin) => {
+    const id = toast.loading("Cadastrando novo usuário...");
+
     try {
       const response = await api.post("/login", data);
       setUserData(response.data.user);
       localStorage.setItem("@TOKEN", response.data.accessToken);
+      toast.update(id, {
+        render: "Login realizado com sucesso!",
+        type: "success",
+        isLoading: false,
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       navigate("/home");
       console.log(response);
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error) && error.response) {
+        toast.update(id, {
+          render: error.response.data,
+          type: "error",
+          isLoading: false,
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
   };
 
   const checkToken = async (token: string) => {};
 
   const requestNewUser = async (data: iFormRegister) => {
+    const id = toast.loading("Cadastrando novo usuário...");
     try {
       const response = await api.post("/users", data, {
         headers: {
           "Content-Type": "application/json",
         },
       });
+      toast.update(id, {
+        render: "Cadastro realizado com sucesso!",
+        type: "success",
+        isLoading: false,
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 
-      console.log(response);
+      navigate("/");
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error) && error.response) {
+        toast.update(id, {
+          render: error.response.data,
+          type: "error",
+          isLoading: false,
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
   };
 

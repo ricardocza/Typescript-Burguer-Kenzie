@@ -6,6 +6,7 @@ import { GlobalStyle } from "./styles/GlobalStyles";
 import { RegisterPage } from "./pages/Register";
 import { CartProvider } from "./context/CartContext";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -16,12 +17,12 @@ function App() {
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick
+        closeOnClick={true}
         rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme="light"
       />
       <Routes>
         <Route path="/" element={<LoginPage />} />
