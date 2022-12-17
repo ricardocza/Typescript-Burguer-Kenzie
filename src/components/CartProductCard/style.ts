@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-export const StyledProductCard = styled.div`
+export const StyledProductCard = styled.li`
   width: 100%;
   padding: 0.5rem;
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
+  position: relative;
 
   & > figure {
     width: 80px;
@@ -54,5 +55,9 @@ export const StyledProductCard = styled.div`
   & > button {
     background-color: transparent;
     border: none;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
   }
 `;
