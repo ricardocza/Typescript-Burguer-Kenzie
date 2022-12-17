@@ -35,6 +35,13 @@ export const CartProductCard = ({ cartProduct }: iProductCart) => {
     });
   };
 
+  const removeProduct = (event: React.MouseEvent<HTMLElement>) => {
+    const currentElement = event.currentTarget.closest("li")?.id;
+    setCartProducts(
+      cartProducts.filter((element) => element.id != currentElement)
+    );
+  };
+
   return (
     <StyledProductCard id={cartProduct.id}>
       <figure>
@@ -53,7 +60,7 @@ export const CartProductCard = ({ cartProduct }: iProductCart) => {
           <button onClick={addQuantity}>+</button>
         </div>
       </div>
-      <button>
+      <button onClick={removeProduct}>
         <img src={trash} alt="" />
       </button>
     </StyledProductCard>

@@ -13,9 +13,8 @@ import { UserProvider } from "../../context/UserContext";
 import { CartContext } from "../../context/CartContext";
 
 export const HomePage = () => {
-  const [showModal, setShowModal] = useState(false);
-  const { products, requestProducts } = useContext(CartContext);
-  const { cartProducts, setCartProducts } = useContext(CartContext);
+  const { products, requestProducts, cartProducts, showModal, setShowModal } =
+    useContext(CartContext);
 
   const navigate = useNavigate();
 
@@ -29,7 +28,6 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
-    console.log(cartProducts);
     requestProducts();
   }, []);
 

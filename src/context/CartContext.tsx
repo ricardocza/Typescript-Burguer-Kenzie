@@ -8,6 +8,10 @@ export interface iCartContext {
   cartProducts: iProduct[];
   setCartProducts: React.Dispatch<React.SetStateAction<iProduct[]>>;
   requestProducts: () => void;
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  totals: number;
+  setTotals: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface iProduct {
@@ -28,7 +32,8 @@ interface iCartProvider {
 export const CartProvider = ({ children }: iCartProvider) => {
   const [products, setProducts] = useState([] as iProduct[]);
   const [cartProducts, setCartProducts] = useState([] as iProduct[]);
-  // const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [totals, setTotals] = useState(0);
 
   const requestProducts = async () => {
     const token = localStorage.getItem("@TOKEN");
@@ -39,7 +44,6 @@ export const CartProvider = ({ children }: iCartProvider) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
       setProducts(response.data);
     } catch (error) {
       console.log(error);
@@ -54,6 +58,10 @@ export const CartProvider = ({ children }: iCartProvider) => {
         cartProducts,
         setCartProducts,
         requestProducts,
+        showModal,
+        setShowModal,
+        totals,
+        setTotals,
       }}
     >
       {children}
