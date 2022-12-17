@@ -9,7 +9,8 @@ export const StyledProductCard = styled.div`
   & > figure {
     width: 80px;
     height: 80px;
-    border: 1px solid red;
+    background-color: var(--color-grey100);
+    border-radius: 8px;
     display: flex;
     align-items: flex-end;
 
@@ -28,15 +29,19 @@ export const StyledProductCard = styled.div`
       gap: 4px;
       background-color: var(--color-grey100);
       width: max-content;
-      padding: 5px 0;
+      padding: 3px 0;
       border-radius: 8px;
 
       & > input {
         width: 30px;
+
         text-align: center;
-        border: none;
+        background-color: white;
         outline: none;
+        border: none;
+        border-radius: 4px;
       }
+
       & > button {
         color: #e60000;
         width: 22px;

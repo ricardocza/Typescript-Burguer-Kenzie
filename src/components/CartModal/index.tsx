@@ -23,14 +23,14 @@ export const Modal = ({ setShowModal }: iModalProps) => {
             x
           </button>
         </header>
-        {cartProducts.length === 0 ? (
+        {cartProducts?.length === 0 ? (
           <ul>
             <h3>Sua sacola está vazia</h3>
             <p>Adicione itens</p>
           </ul>
         ) : (
           <ul>
-            {cartProducts.map((element) => (
+            {cartProducts?.map((element) => (
               <CartProductCard key={element.id} cartProduct={element} />
             ))}
           </ul>

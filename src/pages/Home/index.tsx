@@ -44,7 +44,7 @@ export const HomePage = () => {
             </button>
             <button onClick={openModal}>
               <img src={cartIcon} alt="Icone de carrinho de compras" />
-              <p>{cartProducts.length}</p>
+              <p>{cartProducts?.length}</p>
             </button>
             <button onClick={exitButton}>
               <img src={exitIcon} alt="Icone de sair do Burguer Kenzie 😥 " />

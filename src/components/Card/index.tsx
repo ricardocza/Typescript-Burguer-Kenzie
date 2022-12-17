@@ -8,11 +8,14 @@ export const Card = ({ id, name, category, price, img }: iProduct) => {
 
   const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
     const currentId = event.currentTarget.id;
-    const currentObject = products.find((element) => element.id == currentId);
+    const currentObject = {
+      ...products.find((element) => element.id == currentId)!,
+      quantity: 1,
+    };
+
     if (!cartProducts.find((element) => element.id == currentId)) {
       setCartProducts([...cartProducts, currentObject]);
     }
-    console.log(cartProducts);
   };
   return (
     <StyledCard>

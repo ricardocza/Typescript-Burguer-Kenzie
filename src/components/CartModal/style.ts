@@ -10,15 +10,16 @@ export const StyledModalBG = styled.div`
 `;
 
 export const StyledModal = styled.div`
-  width: 100%;
-  max-width: 300px;
-  height: 300px;
+  width: 95%;
+  max-width: 375px;
+  max-height: 400px;
   background-color: #ffffff;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   border-radius: 8px;
+  overflow: hidden;
 
   & > header {
     display: flex;
@@ -38,10 +39,11 @@ export const StyledModal = styled.div`
   }
 
   & > ul {
-    height: 70%;
+    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow-y: scroll;
   }
 `;

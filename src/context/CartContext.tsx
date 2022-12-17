@@ -2,11 +2,11 @@ import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
-interface iCartContext {
+export interface iCartContext {
   products: iProduct[];
-  setProducts: React.Dispatch<React.SetStateAction<any>>;
+  setProducts: React.Dispatch<React.SetStateAction<iProduct[]>>;
   cartProducts: iProduct[];
-  setCartProducts: React.Dispatch<React.SetStateAction<any>>;
+  setCartProducts: React.Dispatch<React.SetStateAction<iProduct[]>>;
   requestProducts: () => void;
 }
 
@@ -16,6 +16,7 @@ export interface iProduct {
   category: string;
   price: number;
   img: string;
+  quantity?: number;
 }
 
 export const CartContext = createContext({} as iCartContext);
@@ -25,8 +26,8 @@ interface iCartProvider {
 }
 
 export const CartProvider = ({ children }: iCartProvider) => {
-  const [products, setProducts] = useState([]);
-  const [cartProducts, setCartProducts] = useState([]);
+  const [products, setProducts] = useState([] as iProduct[]);
+  const [cartProducts, setCartProducts] = useState([] as iProduct[]);
   // const navigate = useNavigate();
 
   const requestProducts = async () => {
