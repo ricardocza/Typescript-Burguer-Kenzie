@@ -62,4 +62,10 @@ export const StyledHeader = styled.div`
       border-radius: 50%;
     }
   }
+
+  @media (max-width: 400px) {
+    & > div > p {
+      width: 65%;
+    }
+  }
 `;

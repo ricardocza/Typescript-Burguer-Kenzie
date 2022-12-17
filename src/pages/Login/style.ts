@@ -30,6 +30,10 @@ export const StyledLoginPage = styled.section`
     height: 90vh;
     align-items: center;
 
+    & > form {
+      width: 500px;
+    }
+
     & > div > ul {
       display: flex;
     }

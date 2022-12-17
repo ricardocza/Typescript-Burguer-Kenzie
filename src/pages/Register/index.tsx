@@ -8,6 +8,7 @@ import { ButtonGrey, ButtonPrimary } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import { Header } from "../../components/Header";
 
 export interface iFormRegister {
   name: string;
@@ -29,12 +30,12 @@ export const RegisterPage = () => {
 
   return (
     <StyledRegistrerPage>
-      <img src={logo} alt="" />
-      <div>
-        <h3>Cadastro</h3>
-        <Link to={"/"}>Retornar para o login</Link>
-      </div>
+      <Header />
       <Form onSubmit={handleSubmit(submitLogin)}>
+        <div>
+          <h1>Cadastro</h1>
+          <Link to={"/"}>Retornar para o login</Link>
+        </div>
         <Input
           label="Nome"
           placeholder="Nome"
