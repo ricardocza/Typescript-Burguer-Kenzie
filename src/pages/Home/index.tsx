@@ -13,8 +13,8 @@ import { UserProvider } from "../../context/UserContext";
 import { CartContext } from "../../context/CartContext";
 
 export const HomePage = () => {
-  const [showModal, setShowModal] = useState(false);
-  const { products, requestProducts } = useContext(CartContext);
+  const { products, requestProducts, cartProducts, showModal, setShowModal } =
+    useContext(CartContext);
 
   const navigate = useNavigate();
 
@@ -28,7 +28,6 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
-    console.log(products);
     requestProducts();
   }, []);
 
@@ -43,7 +42,7 @@ export const HomePage = () => {
             </button>
             <button onClick={openModal}>
               <img src={cartIcon} alt="Icone de carrinho de compras" />
-              <p>0</p>
+              <p>{cartProducts?.length}</p>
             </button>
             <button onClick={exitButton}>
               <img src={exitIcon} alt="Icone de sair do Burguer Kenzie 😥 " />

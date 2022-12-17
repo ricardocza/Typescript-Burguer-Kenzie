@@ -1,20 +1,17 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
-interface iCartContext {
+export interface iCartContext {
   products: iProduct[];
-  setProducts: React.Dispatch<React.SetStateAction<any>>;
-  cartProducts: iCartProducts[];
-  setCartProducts: React.Dispatch<React.SetStateAction<any>>;
+  setProducts: React.Dispatch<React.SetStateAction<iProduct[]>>;
+  cartProducts: iProduct[];
+  setCartProducts: React.Dispatch<React.SetStateAction<iProduct[]>>;
   requestProducts: () => void;
-}
-
-interface iCartProducts {
-  name: string;
-  price: number;
-  img: string;
-  quantity: number;
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  totals: number;
+  setTotals: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface iProduct {
@@ -23,6 +20,7 @@ export interface iProduct {
   category: string;
   price: number;
   img: string;
+  quantity?: number;
 }
 
 export const CartContext = createContext({} as iCartContext);
@@ -32,9 +30,10 @@ interface iCartProvider {
 }
 
 export const CartProvider = ({ children }: iCartProvider) => {
-  const [products, setProducts] = useState([]);
-  const [cartProducts, setCartProducts] = useState([]);
-  // const navigate = useNavigate();
+  const [products, setProducts] = useState([] as iProduct[]);
+  const [cartProducts, setCartProducts] = useState([] as iProduct[]);
+  const [showModal, setShowModal] = useState(false);
+  const [totals, setTotals] = useState(0);
 
   const requestProducts = async () => {
     const token = localStorage.getItem("@TOKEN");
@@ -45,7 +44,6 @@ export const CartProvider = ({ children }: iCartProvider) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
       setProducts(response.data);
     } catch (error) {
       console.log(error);
@@ -60,6 +58,10 @@ export const CartProvider = ({ children }: iCartProvider) => {
         cartProducts,
         setCartProducts,
         requestProducts,
+        showModal,
+        setShowModal,
+        totals,
+        setTotals,
       }}
     >
       {children}

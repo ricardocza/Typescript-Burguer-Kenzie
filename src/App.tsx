@@ -9,14 +9,19 @@ import { CartProvider } from "./context/CartContext";
 function App() {
   return (
     <UserProvider>
-      <CartProvider>
-        <GlobalStyle />
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/home" element={<HomePage />} />
-        </Routes>
-      </CartProvider>
+      <GlobalStyle />
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/home"
+          element={
+            <CartProvider>
+              <HomePage />
+            </CartProvider>
+          }
+        />
+      </Routes>
     </UserProvider>
   );
 }

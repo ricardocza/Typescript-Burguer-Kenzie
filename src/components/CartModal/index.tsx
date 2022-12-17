@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import { CartProductCard } from "../CartProductCard";
+import { CartTotals } from "../CartTotals";
 import { StyledModal, StyledModalBG } from "./style";
 
 interface iModalProps {
@@ -6,7 +9,7 @@ interface iModalProps {
 }
 
 export const Modal = ({ setShowModal }: iModalProps) => {
-  const [cartProducts, setCartProducts] = useState(["teste1", "teste2"]);
+  const { cartProducts, setCartProducts, setTotals } = useContext(CartContext);
 
   const closeModal = () => {
     setShowModal(false);
@@ -22,17 +25,18 @@ export const Modal = ({ setShowModal }: iModalProps) => {
           </button>
         </header>
         {cartProducts.length === 0 ? (
-          <ul>
+          <div>
             <h3>Sua sacola está vazia</h3>
             <p>Adicione itens</p>
-          </ul>
+          </div>
         ) : (
           <ul>
             {cartProducts.map((element) => (
-              <p>{element}</p>
+              <CartProductCard key={element.id} cartProduct={element} />
             ))}
           </ul>
         )}
+        {cartProducts.length > 0 && <CartTotals />}
       </StyledModal>
     </StyledModalBG>
   );

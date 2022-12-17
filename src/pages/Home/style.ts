@@ -40,13 +40,15 @@ export const StyledHomePage = styled.main`
 
           & > p {
             position: absolute;
-            top: -18px;
+            top: -10px;
             right: -10px;
             color: #ffffff;
             background-color: var(--color-primary);
             border: 1px solid var(--color-primary);
             border-radius: 4px;
             padding: 0.15rem;
+            width: 20px;
+            height: 20px;
           }
         }
       }

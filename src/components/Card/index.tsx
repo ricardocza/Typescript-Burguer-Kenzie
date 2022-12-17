@@ -1,11 +1,24 @@
 import { StyledCard } from "./style";
-import mockImg from "../../imgs/mock-hamb.png";
 import { ButtonPrimary } from "../Button";
-import { iProduct } from "../../context/CartContext";
+import { CartContext, iProduct } from "../../context/CartContext";
+import { useContext } from "react";
 
 export const Card = ({ id, name, category, price, img }: iProduct) => {
+  const { products, cartProducts, setCartProducts } = useContext(CartContext);
+
+  const addToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const currentId = event.currentTarget.id;
+    const currentObject = {
+      ...products.find((element) => element.id == currentId)!,
+      quantity: 1,
+    };
+
+    if (!cartProducts.find((element) => element.id == currentId)) {
+      setCartProducts([...cartProducts, currentObject]);
+    }
+  };
   return (
-    <StyledCard id={id}>
+    <StyledCard>
       <figure>
         <img src={img} alt="" />
       </figure>
@@ -18,7 +31,12 @@ export const Card = ({ id, name, category, price, img }: iProduct) => {
             currency: "BRL",
           })}
         </h3>
-        <ButtonPrimary text="Adicionar" type="button" />
+        <ButtonPrimary
+          id={id}
+          onClick={addToCart}
+          text="Adicionar"
+          type="button"
+        />
       </div>
     </StyledCard>
   );
