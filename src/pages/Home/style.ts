@@ -54,4 +54,19 @@ export const StyledHomePage = styled.main`
       }
     }
   }
+
+  @media (min-width: 850px) {
+    max-width: 70rem;
+
+    & > header > section {
+      max-width: 70rem;
+    }
+
+    & > ul {
+      max-width: 70rem;
+      overflow-x: unset;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
 `;

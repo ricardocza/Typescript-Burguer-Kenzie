@@ -10,7 +10,7 @@ export const StyledLoginPage = styled.section`
   max-width: 500px;
   width: 100%;
 
-  & p {
+  & > div > div > p {
     color: var(--color-grey300);
     text-align: center;
     width: 80%;
@@ -21,6 +21,12 @@ export const StyledLoginPage = styled.section`
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    & > p {
+      color: var(--color-grey300);
+      text-align: center;
+      width: 80%;
+      margin: 0 auto;
+    }
   }
 
   @media (min-width: 850px) {

@@ -1,8 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { toastConfig } from "../components/ToastConfig";
 import { iFormLogin } from "../pages/Login";
 import { api } from "../services/api";
 

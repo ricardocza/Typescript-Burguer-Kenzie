@@ -8,4 +8,8 @@ export const StyledProductList = styled.ul`
   display: flex;
   overflow-x: auto;
   gap: 1.25rem;
+
+  & > li > figure {
+    overflow: hidden;
+  }
 `;

@@ -10,7 +10,7 @@ export const StyledRegistrerPage = styled.section`
   max-width: 500px;
   width: 100%;
 
-  & p {
+  & > div > div > p {
     color: var(--color-grey300);
     text-align: center;
     width: 80%;
