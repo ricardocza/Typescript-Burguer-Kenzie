@@ -15,6 +15,17 @@ export const CartProductCard = ({ cartProduct }: iProductCart) => {
       const currentId =
         event.currentTarget.parentElement.parentElement.parentElement.id;
       event.currentTarget.nextSibling.value--;
+      const currentValue = event.currentTarget.nextSibling.value;
+
+      setCartProducts((oldValues) => {
+        oldValues = oldValues.map((element) => {
+          if (element.id == currentId) {
+            element.quantity = parseInt(currentValue);
+            return element;
+          } else return element;
+        });
+        return oldValues;
+      });
     }
   };
 
@@ -34,6 +45,8 @@ export const CartProductCard = ({ cartProduct }: iProductCart) => {
       return oldValues;
     });
   };
+
+  const updateQuantity = () => {};
 
   const removeProduct = (event: React.MouseEvent<HTMLElement>) => {
     const currentElement = event.currentTarget.closest("li")?.id;

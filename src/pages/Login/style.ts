@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledLoginPage = styled.section`
   width: 100%;
-  margin-top: 2rem;
+  margin: 2rem auto;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -10,47 +10,47 @@ export const StyledLoginPage = styled.section`
   max-width: 500px;
   width: 100%;
 
-  & > img {
-    max-width: 230px;
-    width: 100%;
-  }
-
-  & p {
+  & > div > div > p {
     color: var(--color-grey300);
     text-align: center;
     width: 80%;
     margin: 0 auto;
   }
 
-  & > :nth-child(2) {
+  & > section {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border: 1px solid var(--color-grey0);
-    box-shadow: var(--box-shadow);
-
+    flex-direction: column;
+    gap: 2rem;
     & > p {
-      max-width: 340px;
-      text-align: justify;
+      color: var(--color-grey300);
+      text-align: center;
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
 
-      & > span {
-        color: black;
-      }
+  @media (min-width: 850px) {
+    flex-direction: row-reverse;
+    gap: 4rem;
+    max-width: 1000px;
+    height: 90vh;
+    align-items: center;
+
+    & > form {
+      width: 500px;
     }
 
-    & figure {
-      width: 60px;
-      height: 60px;
+    & > div > ul {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #27ae6020;
-      border-radius: 8px;
+    }
 
-      & img {
-        width: 24px;
-        height: 24px;
+    & > section {
+      padding: 1rem;
+      box-shadow: 0 0 36px -10px var(--color-grey300);
+      border-radius: 12px;
+      & > form {
+        box-shadow: none;
+        border: none;
       }
     }
   }

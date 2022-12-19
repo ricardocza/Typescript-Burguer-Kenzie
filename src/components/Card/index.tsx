@@ -2,6 +2,7 @@ import { StyledCard } from "./style";
 import { ButtonPrimary } from "../Button";
 import { CartContext, iProduct } from "../../context/CartContext";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 
 export const Card = ({ id, name, category, price, img }: iProduct) => {
   const { products, cartProducts, setCartProducts } = useContext(CartContext);
@@ -15,6 +16,25 @@ export const Card = ({ id, name, category, price, img }: iProduct) => {
 
     if (!cartProducts.find((element) => element.id == currentId)) {
       setCartProducts([...cartProducts, currentObject]);
+      toast.success("Produto adicionado ao carrinho!", {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error("Produto já foi adicionado ao carrinho!", {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   return (

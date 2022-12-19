@@ -1,13 +1,15 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Form, iSubmitHandler } from "../../components/Form";
+import { Form } from "../../components/Form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "../../components/Input";
 import { StyledRegistrerPage } from "./style";
-import logo from "../../imgs/logo.png";
-import loginicon from "../../imgs/loginicon.png";
 import { ButtonGrey, ButtonPrimary } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import { Header } from "../../components/Header";
+import { registerSchema } from "./registerSchema";
+import { FormError } from "../../components/FormError";
 
 export interface iFormRegister {
   name: string;
@@ -19,8 +21,14 @@ export interface iFormRegister {
 export const RegisterPage = () => {
   const { requestNewUser } = useContext(UserContext);
 
-  const { register, handleSubmit } = useForm<iFormRegister>();
-  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iFormRegister>({
+    mode: "onChange",
+    resolver: yupResolver(registerSchema),
+  });
 
   const submitLogin: SubmitHandler<iFormRegister> = (data) => {
     const { confirmPassword: _, ...rest } = data;
@@ -29,12 +37,12 @@ export const RegisterPage = () => {
 
   return (
     <StyledRegistrerPage>
-      <img src={logo} alt="" />
-      <div>
-        <h3>Cadastro</h3>
-        <Link to={"/"}>Retornar para o login</Link>
-      </div>
+      <Header />
       <Form onSubmit={handleSubmit(submitLogin)}>
+        <div>
+          <h1>Cadastro</h1>
+          <Link to={"/"}>Retornar para o login</Link>
+        </div>
         <Input
           label="Nome"
           placeholder="Nome"
@@ -42,6 +50,7 @@ export const RegisterPage = () => {
           showButton={false}
           register={register("name")}
         />
+        {errors.name?.message && <FormError text={errors.name.message} />}
         <Input
           label="Email"
           placeholder="Email"
@@ -49,6 +58,8 @@ export const RegisterPage = () => {
           showButton={false}
           register={register("email")}
         />
+        {errors.email?.message && <FormError text={errors.email.message} />}
+
         <Input
           label="Senha"
           placeholder="Senha"
@@ -56,6 +67,9 @@ export const RegisterPage = () => {
           showButton={false}
           register={register("password")}
         />
+        {errors.password?.message && (
+          <FormError text={errors.password.message} />
+        )}
         <Input
           label="Confirmar Senha"
           placeholder="Confirmar Senha"
@@ -63,6 +77,9 @@ export const RegisterPage = () => {
           showButton={false}
           register={register("confirmPassword")}
         />
+        {errors.confirmPassword?.message && (
+          <FormError text={errors.confirmPassword.message} />
+        )}
         <ButtonGrey type="submit" text="Cadastrar" />
       </Form>
     </StyledRegistrerPage>
