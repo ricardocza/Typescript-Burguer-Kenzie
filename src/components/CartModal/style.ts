@@ -12,7 +12,7 @@ export const StyledModalBG = styled.div`
 export const StyledModal = styled.div`
   width: 95%;
   max-width: 375px;
-  max-height: 475px;
+  max-height: 500px;
   background-color: #ffffff;
   position: fixed;
   top: 50%;
