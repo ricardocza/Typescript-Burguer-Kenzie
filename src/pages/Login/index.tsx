@@ -6,11 +6,13 @@ import { StyledLoginPage } from "./style";
 
 import { ButtonGrey, ButtonPrimary } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Header } from "../../components/Header";
 import { loginSchema } from "./loginSchema";
 import { FormError } from "../../components/FormError";
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
 export interface iFormLogin {
   email: string;
@@ -19,7 +21,7 @@ export interface iFormLogin {
 
 export const LoginPage = () => {
   const { requestLogin } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,6 +34,57 @@ export const LoginPage = () => {
   const submitLogin: SubmitHandler<iFormLogin> = async (data) => {
     requestLogin(data);
   };
+
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const token = localStorage.getItem("@TOKEN");
+      const userId = localStorage.getItem("@ID");
+      if (token && userId) {
+        const toaster = toast.loading("Carregando usuário...", {
+          toastId: "autologin",
+        });
+
+        const response = await api.get(`/users/${userId}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status == 200) {
+          navigate("/home");
+          toast.update(toaster, {
+            render: "Login realizado com sucesso!",
+            type: "success",
+            isLoading: false,
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          toast.update(toaster, {
+            render: "Erro ao realizar autologin",
+            type: "error",
+            isLoading: false,
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          localStorage.removeItem("@TOKEN");
+          localStorage.removeItem("@ID");
+        }
+      }
+    };
+    getCurrentUser();
+  }, []);
 
   return (
     <StyledLoginPage>

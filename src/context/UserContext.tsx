@@ -28,13 +28,14 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const navigate = useNavigate();
 
   const requestLogin = async (data: iFormLogin) => {
-    const id = toast.loading("Cadastrando novo usuário...");
+    const toaster = toast.loading("Cadastrando novo usuário...");
 
     try {
       const response = await api.post("/login", data);
       setUserData(response.data.user);
       localStorage.setItem("@TOKEN", response.data.accessToken);
-      toast.update(id, {
+      localStorage.setItem("@ID", response.data.user.id);
+      toast.update(toaster, {
         render: "Login realizado com sucesso!",
         type: "success",
         isLoading: false,
@@ -47,10 +48,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         progress: undefined,
       });
       navigate("/home");
-      console.log(response);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        toast.update(id, {
+        toast.update(toaster, {
           render: error.response.data,
           type: "error",
           isLoading: false,
@@ -69,14 +69,14 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const checkToken = async (token: string) => {};
 
   const requestNewUser = async (data: iFormRegister) => {
-    const id = toast.loading("Cadastrando novo usuário...");
+    const toaster = toast.loading("Cadastrando novo usuário...");
     try {
       const response = await api.post("/users", data, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      toast.update(id, {
+      toast.update(toaster, {
         render: "Cadastro realizado com sucesso!",
         type: "success",
         isLoading: false,
@@ -92,7 +92,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       navigate("/");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        toast.update(id, {
+        toast.update(toaster, {
           render: error.response.data,
           type: "error",
           isLoading: false,

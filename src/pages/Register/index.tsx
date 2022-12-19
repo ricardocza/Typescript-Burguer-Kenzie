@@ -29,7 +29,6 @@ export const RegisterPage = () => {
     mode: "onChange",
     resolver: yupResolver(registerSchema),
   });
-  const navigate = useNavigate();
 
   const submitLogin: SubmitHandler<iFormRegister> = (data) => {
     const { confirmPassword: _, ...rest } = data;

@@ -52,20 +52,18 @@ export const HomePage = () => {
       </header>
 
       <ProductList>
-        {products.length > 0 ? (
-          products.map((element) => (
-            <Card
-              key={element.id}
-              id={element.id}
-              name={element.name}
-              category={element.category}
-              price={element.price}
-              img={element.img}
-            />
-          ))
-        ) : (
-          <p>lista vazia</p>
-        )}
+        {products.length > 0
+          ? products.map((element) => (
+              <Card
+                key={element.id}
+                id={element.id}
+                name={element.name}
+                category={element.category}
+                price={element.price}
+                img={element.img}
+              />
+            ))
+          : null}
       </ProductList>
       {showModal && <Modal setShowModal={setShowModal} />}
     </StyledHomePage>
