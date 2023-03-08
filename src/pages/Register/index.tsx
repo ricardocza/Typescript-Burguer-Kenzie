@@ -3,8 +3,8 @@ import { Form } from "../../components/Form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "../../components/Input";
 import { StyledRegistrerPage } from "./style";
-import { ButtonGrey, ButtonPrimary } from "../../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { ButtonGrey } from "../../components/Button";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Header } from "../../components/Header";
@@ -31,6 +31,7 @@ export const RegisterPage = () => {
   });
 
   const submitLogin: SubmitHandler<iFormRegister> = (data) => {
+    console.log(register);
     const { confirmPassword: _, ...rest } = data;
     requestNewUser(rest);
   };

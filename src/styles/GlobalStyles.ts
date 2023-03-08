@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
         --color-grey300: #828282;
         --color-grey100: #E0E0E0;
         --color-grey0: #f5f5f5;
-        --box-shadow: 0 0 20px -10px;
+        --box-shadow: 0 0 20px -1px;
     }
 
 * {

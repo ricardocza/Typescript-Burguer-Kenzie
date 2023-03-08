@@ -19,7 +19,7 @@ export const CartProductCard = ({ cartProduct }: iProductCart) => {
 
       setCartProducts((oldValues) => {
         oldValues = oldValues.map((element) => {
-          if (element.id == currentId) {
+          if (element.id === currentId) {
             element.quantity = parseInt(currentValue);
             return element;
           } else return element;
@@ -37,7 +37,7 @@ export const CartProductCard = ({ cartProduct }: iProductCart) => {
     const currentValue = event.currentTarget.previousSibling.value;
     setCartProducts((oldValues) => {
       oldValues = oldValues.map((element) => {
-        if (element.id == currentId) {
+        if (element.id === currentId) {
           element.quantity = parseInt(currentValue);
           return element;
         } else return element;
@@ -51,7 +51,7 @@ export const CartProductCard = ({ cartProduct }: iProductCart) => {
   const removeProduct = (event: React.MouseEvent<HTMLElement>) => {
     const currentElement = event.currentTarget.closest("li")?.id;
     setCartProducts(
-      cartProducts.filter((element) => element.id != currentElement)
+      cartProducts.filter((element) => element.id !== currentElement)
     );
   };
 

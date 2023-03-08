@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledInput = styled.div`
+export const StyledInput = styled.fieldset`
   display: flex;
   flex-direction: column;
   position: relative;
